@@ -89,7 +89,9 @@ export const GameEndMW: React.FC = () => {
                             <p>Played</p>
                         </div>
                         <div className='statistic__dataItem'>
-                            <div>{Math.floor((stat?.win / stat?.allGames) * 100) || '0'} %</div>
+                            <div>{Math.floor((stat?.win / stat?.allGames) * 100) || '0'} 
+                                <span style={{fontSize: '25px'}}> % </span>
+                            </div>
                             <p>Win</p>
                         </div>
                         <div className='statistic__dataItem'>
