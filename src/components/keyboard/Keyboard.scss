@@ -1,0 +1,52 @@
+.keyboard {
+    min-width: 500px;
+    height: 150px;
+    margin-bottom: 2px;
+    
+
+    
+    &__inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__firstLine, &__secondLine {
+        width: 70%;
+        height: 60px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    &__delete, &__enter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 55px;
+        width: 55px;
+        border: none;
+        border-radius: 9px;
+        cursor: pointer;
+        background-color: #0A1A29;
+    }
+
+    &__delete_inner, &__enter_inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+        border-radius: 9px;
+        background-color: #818384;
+    }
+    
+    &__delete_value, &__enter_value {
+        color: #fff;
+        font-size: 25px;
+        font-family: 'Lato', sans-serif;
+    }
+}

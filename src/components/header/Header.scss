@@ -1,0 +1,48 @@
+.header {
+    width: 100%;
+    height: 8%;
+    background-color: #07131e;
+
+    &__left {
+        width: 150px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &__links {
+        width: 100px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__navBtns {    
+        border: none;
+        outline: none;
+        background-color: #07131e;
+        border-radius: 5px;
+        padding: 3px 6px;
+        cursor: pointer;
+    }
+    
+    &__logo, button {
+        color: #fff;
+        font-family: 'Kanit', sans-serif;
+    }
+
+
+    &__right {
+        width: 150px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__inner {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+}

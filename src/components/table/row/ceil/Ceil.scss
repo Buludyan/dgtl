@@ -1,0 +1,21 @@
+.ceil {
+    width: 10%;
+    height: 90%;
+    border: 1px solid rgb(0, 0, 0);
+    margin: 0 4px;
+    border: none;
+
+
+    &__inner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #363636;
+        color: #000;
+        border-radius: 10px;
+        font-family: 'Lato', sans-serif;
+        font-size: 20px;
+    }
+}
