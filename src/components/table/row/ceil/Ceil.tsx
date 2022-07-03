@@ -38,9 +38,8 @@ export const Ceil: React.FC<CeilProps> = ({ row, ceil }) => {
     }
     if (currentRow === row) {
       isGameEnd ? setBgColor('#363636') : setBgColor('#EDEDED')
-
     }
-  }, [currentRow, row, tableData, ceil])
+  }, [currentRow, row, tableData, ceil]);
 
   return (
     <div className='ceil'>

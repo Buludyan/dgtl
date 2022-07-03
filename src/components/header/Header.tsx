@@ -25,8 +25,6 @@ export const Header = () => {
   const onRestartHandler = () => {
     const secretNum: number[] = (Math.floor(Math.random() * 1000000) + '').split('').map(e => +e)
     dispatch(restartGame(secretNum))
-
-    console.log(secretNum)
   };
 
   const onDailyClick = () => {
@@ -65,7 +63,7 @@ export const Header = () => {
                 onClick={onDailyClick}
                 className='header__navBtns'
                 style={{
-                  backgroundColor: window.location.href === 'http://localhost:3000/'
+                  backgroundColor: window.location.href === `${process.env.REACT_APP_BASE_URL}/`
                     && gameMod === 'daily' ? '#334051' : '#07131e'
                 }}
               >
@@ -77,7 +75,7 @@ export const Header = () => {
                 onClick={onPracticeClick}
                 className='header__navBtns'
                 style={{
-                  backgroundColor: window.location.href === 'http://localhost:3000/practice'
+                  backgroundColor: window.location.href === `${process.env.REACT_APP_BASE_URL}/practice`
                     || gameMod === 'practice' ? '#334051' : '#07131e'
                 }}
               >
@@ -110,7 +108,7 @@ export const Header = () => {
               }}
             />
           </IconButton>
-          {(gameMod === 'practice' || window.location.href === 'http://localhost:3000/practice') &&
+          {(gameMod === 'practice' || window.location.href === `${process.env.REACT_APP_BASE_URL}/practice`) &&
             <IconButton
               onClick={onRestartHandler}
             >

@@ -37,7 +37,7 @@ const App: React.FC = () => {
 
     let currentData = {}
 
-    if (window.location.href === 'http://localhost:3000/') {
+    if (window.location.href === `${process.env.REACT_APP_BASE_URL}/`) {
       currentData = {
         daily: {
           secretNum,
@@ -53,7 +53,7 @@ const App: React.FC = () => {
       }
     }
 
-    if (window.location.href === 'http://localhost:3000/practice') {
+    if (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice`) {
       currentData = {
         daily: {
           ...currData.daily
@@ -124,12 +124,12 @@ const App: React.FC = () => {
       }))
 
     } else {
-      if (window.location.href === 'http://localhost:3000/practice'
+      if (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice`
       ) {
         dispatch(setAllData(currentData.practice))
       }
 
-      if (window.location.href === 'http://localhost:3000/') {
+      if (window.location.href === `${process.env.REACT_APP_BASE_URL}/`) {
         dispatch(setAllData(currentData.daily))
       }
     }
@@ -140,11 +140,11 @@ const App: React.FC = () => {
     const currentData = JSON.parse(localStorage.getItem('currentData') || '{}')
     const secretNum: number[] = (Math.floor(Math.random() * 1000000) + '').split('').map(e => +e)
 
-    if (window.location.href === 'http://localhost:3000/practice') {
+    if (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice`) {
       if (!currentData.practice.secretNum.length) dispatch(setSecretNum(secretNum))
     }
 
-    if (window.location.href === 'http://localhost:3000/') {
+    if (window.location.href === `${process.env.REACT_APP_BASE_URL}/`) {
       if (!currentData.practice.secretNum.length) dispatch(setSecretNum(secretNum))
     }
 
@@ -178,7 +178,7 @@ const App: React.FC = () => {
         localStorage.setItem('date', JSON.stringify({
           date: new Date().setHours(0, 0, 0, 0)
         }))
-        if (window.location.href === 'http://localhost:3000/' || gameMod === 'daily') {
+        if (window.location.href === `${process.env.REACT_APP_BASE_URL}/` || gameMod === 'daily') {
           dispatch(setAllData({
             ...pattern
           }))

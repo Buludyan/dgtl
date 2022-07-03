@@ -43,11 +43,11 @@ export const GameEndMW: React.FC = () => {
 
         const statistic = JSON.parse(localStorage.getItem('statistic') || '{}');
 
-        if (window.location.href === 'http://localhost:3000/' || gameMod === 'daily') {
+        if (window.location.href === `${process.env.REACT_APP_BASE_URL}/` || gameMod === 'daily') {
             setStat(statistic.daily);
         }
 
-        if (window.location.href === 'http://localhost:3000/practice' || gameMod === 'practice') {
+        if (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice` || gameMod === 'practice') {
             setStat(statistic.practice);
         }
     }, [isGameEnd, gameMod]);
@@ -111,7 +111,7 @@ export const GameEndMW: React.FC = () => {
                 {
                     isGameEnd 
                     && 
-                    (window.location.href === 'http://localhost:3000/' || gameMod === 'daily')
+                    (window.location.href === `${process.env.REACT_APP_BASE_URL}/` || gameMod === 'daily')
                     &&
                     <div style={{
                         display: 'flex',

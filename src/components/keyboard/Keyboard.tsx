@@ -48,7 +48,7 @@ export const Keyboard: React.FC = () => {
 
             if (!rowData.find(ceilData => ceilData.status !== 'green')) {
                 dispatch(setGameEnd('win'))
-                if (window.location.href === 'http://localhost:3000/' || gameMod === 'daily') {
+                if (window.location.href === `${process.env.REACT_APP_BASE_URL}/` || gameMod === 'daily') {
                     let { allGames, win, curStreak, maxStreak } = prevStats.daily
 
                     localStorage.setItem('statistic', JSON.stringify({
@@ -63,7 +63,7 @@ export const Keyboard: React.FC = () => {
                         }
                     }))
                 }
-                if (window.location.href === 'http://localhost:3000/practice' || gameMod === 'practice') {
+                if (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice` || gameMod === 'practice') {
                     let { allGames, win, curStreak, maxStreak } = prevStats.practice
 
                     localStorage.setItem('statistic', JSON.stringify({
@@ -82,7 +82,7 @@ export const Keyboard: React.FC = () => {
             }
             if (currentRow === rowsCount.length) {
                 dispatch(setGameEnd('lose'))
-                if (window.location.href === 'http://localhost:3000/' || gameMod === 'daily') {
+                if (window.location.href === `${process.env.REACT_APP_BASE_URL}` || gameMod === 'daily') {
                     let { allGames } = prevStats.daily
 
                     localStorage.setItem('statistic', JSON.stringify({
@@ -96,7 +96,7 @@ export const Keyboard: React.FC = () => {
                         }
                     }))
                 } 
-                if (window.location.href === 'http://localhost:3000/practice' || gameMod === 'practice') {
+                if (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice` || gameMod === 'practice') {
                     let { allGames } = prevStats.practice
 
                     localStorage.setItem('statistic', JSON.stringify({
