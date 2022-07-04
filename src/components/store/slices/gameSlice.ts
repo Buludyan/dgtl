@@ -16,7 +16,7 @@ export type Initial = {
 const initialState: Initial = {
     secretNum: null,
     disabledValues: [],
-    rowsCount: [1, 2, 3, 4, 5],
+    rowsCount: [1, 2, 3, 4],
     ceilsCount: [1, 2, 3, 4, 5, 6],
     tableData: [], 
     currentRow: 1,

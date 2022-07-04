@@ -104,7 +104,7 @@ export const GameEndMW: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                {   (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice` || gameMod === 'practice')
+                {(window.location.href === `${process.env.REACT_APP_BASE_URL}/practice` || gameMod === 'practice')
                     &&
                     <Button
                         variant='contained'
@@ -115,7 +115,7 @@ export const GameEndMW: React.FC = () => {
                 {
                     isGameEnd
                     &&
-                    (window.location.href === `${process.env.REACT_APP_BASE_URL}/` || gameMod === 'daily')
+                    (window.location.href === `${process.env.REACT_APP_BASE_URL}/` && gameMod === 'daily')
                     &&
                     <div style={{
                         display: 'flex',

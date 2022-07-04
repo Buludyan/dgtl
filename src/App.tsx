@@ -159,6 +159,7 @@ const App: React.FC = () => {
 
   }, [dispatch]);
 
+
   useEffect(() => {
     const currData = JSON.parse(localStorage.getItem('currentData') || '{}');
 

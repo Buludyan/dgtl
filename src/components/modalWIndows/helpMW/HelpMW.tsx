@@ -16,7 +16,7 @@ export const HelpMW: React.FC<GameEndMWPrpos> = ({ isActive, setActive }) => {
     >
       <div className='helpModalContent' onClick={(e) => e.stopPropagation()}>
         <div className='helpModalContent__text'>
-          <div>Guess dgtl in 5 tries.</div>
+          <div>Guess dgtl in 4 tries.</div>
           <div>
             Dgtl contains secret number with digits from 0 to 9.
 
