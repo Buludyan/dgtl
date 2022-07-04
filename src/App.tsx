@@ -159,8 +159,6 @@ const App: React.FC = () => {
 
   }, [dispatch]);
 
-  console.log(secretNum)
-
   useEffect(() => {
     const currData = JSON.parse(localStorage.getItem('currentData') || '{}');
 
