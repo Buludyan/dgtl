@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { gameState, restartGame, setAllData, setGameMod, setSecretNum, setStatsOpen } from '../store/slices/gameSlice';
 import { HelpMW } from '../modalWIndows/helpMW/HelpMW';
 import { NavLink } from 'react-router-dom';
+import { dailySecretNumGenerator, practiceSecretNumGenerator } from '../helpers/secretNumGenerators';
 
 type HeaderState = {
   gameMod: 'daily' | 'practice'
@@ -23,23 +24,20 @@ export const Header = () => {
   const { gameMod }: HeaderState = useSelector(gameState);
 
   const onRestartHandler = () => {
-    const secretNum: number[] = (Math.floor(Math.random() * 1000000) + '').split('').map(e => +e)
-    dispatch(restartGame(secretNum))
+    dispatch(restartGame(practiceSecretNumGenerator()));
   };
 
   const onDailyClick = () => {
     const currentData = JSON.parse(localStorage.getItem('currentData') || '{}')
-    const secretNum: number[] = (Math.floor(Math.random() * 1000000) + '').split('').map(e => +e)
     dispatch(setAllData(currentData.daily))
-    if (!currentData.daily.secretNum.length) dispatch(setSecretNum(secretNum))
+    if (!currentData.daily.secretNum.length) dispatch(setSecretNum(dailySecretNumGenerator()))
     dispatch(setGameMod('daily'))
   }
 
   const onPracticeClick = () => {
     const currentData = JSON.parse(localStorage.getItem('currentData') || '{}')
-    const secretNum: number[] = (Math.floor(Math.random() * 1000000) + '').split('').map(e => +e)
     dispatch(setAllData(currentData.practice))
-    if (!currentData.practice.secretNum.length) dispatch(setSecretNum(secretNum))
+    if (!currentData.practice.secretNum.length) dispatch(setSecretNum(practiceSecretNumGenerator()))
     dispatch(setGameMod('practice'))
   }
 

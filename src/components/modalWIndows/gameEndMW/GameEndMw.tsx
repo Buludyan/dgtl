@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { practiceSecretNumGenerator } from '../../helpers/secretNumGenerators';
 import { Statistic } from '../../keyboard/Keyboard';
 import { gameState, restartGame, setStatsOpen } from '../../store/slices/gameSlice';
 import { Timer } from '../../timer/Timer';
@@ -53,8 +54,7 @@ export const GameEndMW: React.FC = () => {
     }, [isGameEnd, gameMod]);
 
     const onRestartHandler = () => {
-        const secretNum: number[] = (Math.floor(Math.random() * 1000000) + '').split('').map(e => +e)
-        dispatch(restartGame(secretNum));
+        dispatch(restartGame(practiceSecretNumGenerator()));
         dispatch(setStatsOpen(false));
         setActive({ status: false, result: 'not' })
     };
@@ -89,8 +89,8 @@ export const GameEndMW: React.FC = () => {
                             <p>Played</p>
                         </div>
                         <div className='statistic__dataItem'>
-                            <div>{Math.floor((stat?.win / stat?.allGames) * 100) || '0'} 
-                                <span style={{fontSize: '25px'}}> % </span>
+                            <div>{Math.floor((stat?.win / stat?.allGames) * 100) || '0'}
+                                <span style={{ fontSize: '25px' }}> % </span>
                             </div>
                             <p>Win</p>
                         </div>
@@ -104,15 +104,17 @@ export const GameEndMW: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                {<Button
-                    variant='contained'
-                    onClick={onRestartHandler}
-                >
-                    Restart game
-                </Button>}
+                {   (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice` || gameMod === 'practice')
+                    &&
+                    <Button
+                        variant='contained'
+                        onClick={onRestartHandler}
+                    >
+                        Restart game
+                    </Button>}
                 {
-                    isGameEnd 
-                    && 
+                    isGameEnd
+                    &&
                     (window.location.href === `${process.env.REACT_APP_BASE_URL}/` || gameMod === 'daily')
                     &&
                     <div style={{

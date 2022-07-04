@@ -7,6 +7,9 @@ import { setAllData, setSecretNum, setStatsOpen } from './components/store/slice
 import { gameState } from '../src/components/store/slices/gameSlice';
 import { Game } from './components/game/Game';
 import { Route, Routes } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import icon from './components/icon/icon.jpg'
+import { dailySecretNumGenerator, practiceSecretNumGenerator } from './components/helpers/secretNumGenerators';
 
 type AppState = {
   secretNum: number[]
@@ -32,6 +35,7 @@ const App: React.FC = () => {
     gameMod,
   }: AppState = useSelector(gameState);
 
+
   useEffect(() => {
     const currData = JSON.parse(localStorage.getItem('currentData') || '{}');
 
@@ -40,7 +44,7 @@ const App: React.FC = () => {
     if (window.location.href === `${process.env.REACT_APP_BASE_URL}/`) {
       currentData = {
         daily: {
-          secretNum,
+          secretNum: [],
           disabledValues,
           tableData,
           currentRow,
@@ -81,7 +85,7 @@ const App: React.FC = () => {
     isGameEnd
   ]);
 
-  
+
   useEffect(() => {
     const stats = JSON.parse(localStorage.getItem('statistic') || '{}')
 
@@ -130,7 +134,12 @@ const App: React.FC = () => {
       }
 
       if (window.location.href === `${process.env.REACT_APP_BASE_URL}/`) {
-        dispatch(setAllData(currentData.daily))
+        dispatch(setAllData(
+          {
+            ...currentData.daily,
+            secretNum: dailySecretNumGenerator()
+          }
+        ))
       }
     }
 
@@ -141,15 +150,16 @@ const App: React.FC = () => {
     const secretNum: number[] = (Math.floor(Math.random() * 1000000) + '').split('').map(e => +e)
 
     if (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice`) {
-      if (!currentData.practice.secretNum.length) dispatch(setSecretNum(secretNum))
+      if (!currentData.practice.secretNum.length) dispatch(setSecretNum(practiceSecretNumGenerator()))
     }
 
     if (window.location.href === `${process.env.REACT_APP_BASE_URL}/`) {
-      if (!currentData.practice.secretNum.length) dispatch(setSecretNum(secretNum))
+      if (!currentData.practice.secretNum.length) dispatch(setSecretNum(dailySecretNumGenerator()))
     }
 
   }, [dispatch]);
 
+  console.log(secretNum)
 
   useEffect(() => {
     const currData = JSON.parse(localStorage.getItem('currentData') || '{}');
@@ -159,7 +169,7 @@ const App: React.FC = () => {
       currentRow: 1,
       disabledValues: [],
       isGameEnd: null,
-      secretNum: (Math.floor(Math.random() * 1000000) + '').split('').map(e => +e),
+      secretNum: dailySecretNumGenerator(),
       tableData: []
     }
 
@@ -194,6 +204,11 @@ const App: React.FC = () => {
 
   return (
     <div className="app">
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>dgtl</title>
+        <link rel='shortcut icon' href={icon} />
+      </Helmet>
       <div className="app__inner">
         <Header />
         <Routes>
