@@ -168,17 +168,8 @@ const App: React.FC = () => {
       currentRow: 1,
       disabledValues: [],
       isGameEnd: null,
-      secretNum: dailySecretNumGenerator(),
+      secretNum: [],
       tableData: []
-    }
-
-    const currentData = {
-      daily: {
-        ...pattern
-      },
-      practice: {
-        ...currData.practice
-      }
     }
 
     const interval = setInterval(() => {
@@ -189,12 +180,22 @@ const App: React.FC = () => {
         }))
         if (window.location.href === `${process.env.REACT_APP_BASE_URL}/` || gameMod === 'daily') {
           dispatch(setAllData({
-            ...pattern
+            ...pattern,
+            secretNum: dailySecretNumGenerator()
           }))
           dispatch(setStatsOpen(false));
         }
 
-        localStorage.setItem('currentData', JSON.stringify(currentData))
+        localStorage.setItem('currentData', JSON.stringify(
+          {
+            daily: {
+              ...pattern,
+              secretNum: dailySecretNumGenerator()
+            },
+            practice: {
+              ...currData.practice
+            }
+        }))
       }
     }, 1000);
 
