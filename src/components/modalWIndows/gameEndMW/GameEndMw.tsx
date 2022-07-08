@@ -11,6 +11,7 @@ type GameEndMWState = {
     isGameEnd: null | 'win' | 'lose',
     isStatsOpen: boolean,
     gameMod: 'daily' | 'practice'
+    secretNum: number[]
 }
 
 export const GameEndMW: React.FC = () => {
@@ -29,7 +30,7 @@ export const GameEndMW: React.FC = () => {
 
     const dispatch = useDispatch();
 
-    const { isGameEnd, isStatsOpen, gameMod }: GameEndMWState = useSelector(gameState);
+    const { isGameEnd, isStatsOpen, gameMod, secretNum }: GameEndMWState = useSelector(gameState);
 
     useEffect(() => {
         if (isGameEnd === 'win') {
@@ -75,11 +76,33 @@ export const GameEndMW: React.FC = () => {
                 {
                     isGameEnd
                     &&
-                    <p
+                    <div
                         className='modalContent__resultText'
                     >
-                        {isActive.result === 'win' ? 'Congratulations, you won!' : 'Next time will be better!'}
-                    </p>
+                        {isActive.result === 'win'
+                            ? 'Congratulations, you won!'
+                            :
+                            'Next time will be better!'
+                        }
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}>
+                            <p style={{
+                                fontSize: '25px',
+                                marginTop: '5px'
+                            }}>
+                                Secret number
+                            </p>
+                            <p style={{
+                                fontSize: '50px'
+                            }}>
+                                {secretNum.join('')}
+                            </p>
+                        </div>
+                    </div>
                 }
                 <div className='statistic'>
                     <p className='statistic__headline'>Your statistics</p>
@@ -117,16 +140,36 @@ export const GameEndMW: React.FC = () => {
                     &&
                     (window.location.href === `${process.env.REACT_APP_BASE_URL}/` && gameMod === 'daily')
                     &&
-                    <div style={{
-                        display: 'flex',
-                        width: '170px',
-                        justifyContent: 'space-between'
-                    }}>
+                    <div
+                        style={{
+                            display: 'flex',
+                            width: '170px',
+                            justifyContent: 'space-between'
+                        }}>
                         <p>NEXT GAME: </p>
                         <Timer countdownTimestampMs={1659986400000} />
                     </div>
                 }
+                <div className='modalContent__link'>
+                    <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href='https://play.google.com/store/apps/details?id=com.LevonHovhannisyan.dgtl'
+                        style={{
+                            textDecoration: 'none',
+                            color: '#fff'
+                        }}
+                    >
+                        Google play
+                    </a>
+                    <a
+                        target="_blank"
+                        rel="noreferrer"
+                        className='modalContent__playIcon'
+                        href='https://play.google.com/store/apps/details?id=com.LevonHovhannisyan.dgtl'
+                    />
+                </div>
             </div>
-        </div>
+        </div >
     )
 };

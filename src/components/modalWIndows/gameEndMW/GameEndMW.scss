@@ -41,6 +41,23 @@
     color: white;
     border: .1px solid #2e2d2d;
 
+    &__link {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 139px;
+    }
+
+    &__playIcon {
+        background-image: url('../../icon/googlePlay.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 30px;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+    }
+
     &__resultText {
         font-size: 25px;
     }

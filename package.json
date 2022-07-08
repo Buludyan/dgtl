@@ -31,6 +31,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy-production": "react-scripts build && scp -r ./build/* dgtl@128.199.48.201:/var/www/dgtlweb.com/html",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

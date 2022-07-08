@@ -147,7 +147,6 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const currentData = JSON.parse(localStorage.getItem('currentData') || '{}')
-    const secretNum: number[] = (Math.floor(Math.random() * 1000000) + '').split('').map(e => +e)
 
     if (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice`) {
       if (!currentData.practice.secretNum.length) dispatch(setSecretNum(practiceSecretNumGenerator()))
