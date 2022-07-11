@@ -154,17 +154,6 @@ export const GameEndMW: React.FC = () => {
                     <a
                         target="_blank"
                         rel="noreferrer"
-                        href='https://play.google.com/store/apps/details?id=com.LevonHovhannisyan.dgtl'
-                        style={{
-                            textDecoration: 'none',
-                            color: '#fff'
-                        }}
-                    >
-                        Google play
-                    </a>
-                    <a
-                        target="_blank"
-                        rel="noreferrer"
                         className='modalContent__playIcon'
                         href='https://play.google.com/store/apps/details?id=com.LevonHovhannisyan.dgtl'
                     />

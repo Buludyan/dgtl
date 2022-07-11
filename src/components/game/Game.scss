@@ -4,4 +4,25 @@
     align-items: center;
     height: 100%;
     min-width: 500px;
+
+    &__secretNum {
+      height: 150px;
+      width: 360px;
+      font-family: 'Lato', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__ceil {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-size: 30px;
+      background-color: #00AD79;
+      color: #000;
+      height: 55px;
+      width: 55px;
+    }
   }

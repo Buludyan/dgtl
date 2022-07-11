@@ -49,12 +49,14 @@
     }
 
     &__playIcon {
+        border-radius: 5px;
+        border: .1px solid #2e2d2d;
         background-image: url('../../icon/googlePlay.png');
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 30px;
-        width: 30px;
-        height: 30px;
+        background-size: 140px;
+        width: 125px;
+        height: 40px;
         cursor: pointer;
     }
 

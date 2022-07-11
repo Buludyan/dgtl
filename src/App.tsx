@@ -177,7 +177,7 @@ const App: React.FC = () => {
         localStorage.setItem('date', JSON.stringify({
           date: new Date().setHours(0, 0, 0, 0)
         }))
-        if (window.location.href === `${process.env.REACT_APP_BASE_URL}/` || gameMod === 'daily') {
+        if (window.location.href === `${process.env.REACT_APP_BASE_URL}/` && gameMod === 'daily') {
           dispatch(setAllData({
             ...pattern,
             secretNum: dailySecretNumGenerator()
