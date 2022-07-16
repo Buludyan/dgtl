@@ -1,7 +1,11 @@
-import React from 'react';
+import { FC } from 'react';
+
 import { useSelector } from 'react-redux';
-import { gameState } from '../../store/slices/gameSlice';
+
+import { gameState } from '../../../slices/gameSlice';
+
 import { Ceil } from './ceil/Ceil';
+
 import './Row.scss';
 
 type RowProps = {
@@ -13,7 +17,7 @@ type RowState = {
     ceilsCount: number[]
 }
 
-export const Row: React.FC<RowProps> = ({ row }) => {
+export const Row: FC<RowProps> = ({ row }) => {
 
     const { ceilsCount }: RowState = useSelector(gameState);
 

@@ -1,7 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { gameState, goNextRow, removeValue, setDisabledValues, setGameEnd, setValue } from '../store/slices/gameSlice';
+
+import { 
+    gameState, 
+    goNextRow, 
+    removeValue, 
+    setDisabledValues, 
+    setGameEnd, 
+    setValue } from '../../slices/gameSlice';
+    
 import { Key } from './key/Key';
+
 import './Keyboard.scss';
 
 type KeyboardState = {
@@ -26,7 +36,7 @@ export type Statistic = {
     maxStreak: number
 }
 
-export const Keyboard: React.FC = () => {
+export const Keyboard: FC = () => {
 
     const dispatch = useDispatch();
     const [deleteSize, setDeleteSize] = useState<string>('55px');

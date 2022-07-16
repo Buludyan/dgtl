@@ -1,16 +1,20 @@
-import React from 'react'
-import './Game.scss'
-import { Keyboard } from '../keyboard/Keyboard'
-import { Table } from '../table/Table'
-import { useSelector } from 'react-redux'
-import { gameState } from '../store/slices/gameSlice'
+import {FC} from 'react';
+
+import { useSelector } from 'react-redux';
+
+import { gameState } from '../../slices/gameSlice';
+
+import { Table } from '../table/Table';
+import { Keyboard } from '../keyboard/Keyboard';
+
+import './Game.scss';
 
 type GameState = {
   isGameEnd: null | 'win' | 'lose',
   secretNum: number[]
 };
 
-export const Game: React.FC = () => {
+export const Game: FC = () => {
 
   const { isGameEnd, secretNum }: GameState = useSelector(gameState);
 
@@ -32,6 +36,14 @@ export const Game: React.FC = () => {
               )
             })}
           </div>
+          :
+          isGameEnd === 'win'
+          ?
+          <div 
+            style={{
+              height: '152px'
+            }}
+          />
           :
           <Keyboard />
       }

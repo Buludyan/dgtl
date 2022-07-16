@@ -1,15 +1,23 @@
-import React, { useEffect } from 'react';
+import { FC, useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
-import './App.scss';
-import { Header } from './components/header/Header';
-import { GameEndMW } from './components/modalWIndows/gameEndMW/GameEndMw';
-import { setAllData, setSecretNum, setStatsOpen } from './components/store/slices/gameSlice';
-import { gameState } from '../src/components/store/slices/gameSlice';
-import { Game } from './components/game/Game';
 import { Route, Routes } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import icon from './components/icon/icon.jpg'
-import { dailySecretNumGenerator, practiceSecretNumGenerator } from './components/helpers/secretNumGenerators';
+
+import icon from '../src/icon/icon.jpg';
+import { dailySecretNumGenerator, practiceSecretNumGenerator } from './helpers/secretNumGenerators';
+import {
+  gameState,
+  setAllData,
+  setSecretNum,
+  setStatsOpen
+} from '../src/slices/gameSlice';
+
+import { Game } from './components/game/Game';
+import { Header } from './components/header/Header';
+import { GameEndMW } from './components/modalWIndows/gameEndMW/GameEndMw';
+
+import './App.scss';
 
 type AppState = {
   secretNum: number[]
@@ -21,7 +29,7 @@ type AppState = {
   gameMod: 'daily' | 'practice'
 }
 
-const App: React.FC = () => {
+const App: FC = () => {
 
   const dispatch = useDispatch();
 
@@ -183,20 +191,20 @@ const App: React.FC = () => {
             secretNum: dailySecretNumGenerator()
           }))
           dispatch(setStatsOpen(false));
+        } else {
+          localStorage.setItem('currentData', JSON.stringify(
+            {
+              daily: {
+                ...pattern,
+                secretNum: dailySecretNumGenerator()
+              },
+              practice: {
+                ...currData.practice
+              }
+            }))
         }
-
-        localStorage.setItem('currentData', JSON.stringify(
-          {
-            daily: {
-              ...pattern,
-              secretNum: dailySecretNumGenerator()
-            },
-            practice: {
-              ...currData.practice
-            }
-        }))
       }
-    }, 1000);
+    }, 100);
 
     return () => clearInterval(interval);
   }, [dispatch, gameMod]);

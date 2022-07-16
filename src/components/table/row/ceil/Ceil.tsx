@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+
 import { useSelector } from 'react-redux';
-import { gameState } from '../../../store/slices/gameSlice';
+
+import { gameState } from '../../../../slices/gameSlice';
+
 import './Ceil.scss';
 
 type CeilProps = {
@@ -22,7 +25,7 @@ type CeilState = {
   isGameEnd: null | 'win' | 'lose',
 }
 
-export const Ceil: React.FC<CeilProps> = ({ row, ceil }) => {
+export const Ceil: FC<CeilProps> = ({ row, ceil }) => {
 
   const [bgColor, setBgColor] = useState<string>('#363636')
 

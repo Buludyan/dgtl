@@ -1,6 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
+import { FC, useState, useEffect, useCallback } from 'react';
+
+import { getRemainingTimeUntilMsTimestamp } from '../../utils/TimerUtils';
+
 import './Timer.scss';
-import { getRemainingTimeUntilMsTimestamp } from './TimerUtils';
+
 
 
 const defaultRemainingTime = {
@@ -9,25 +12,22 @@ const defaultRemainingTime = {
     hours: '00',
 }
 
-type TimerProps = {
-    countdownTimestampMs: number
-}
 
-export const Timer: React.FC<TimerProps> = ({ countdownTimestampMs }) => {
+export const Timer: FC = () => {
     const [remainingTime, setRemainingTime] = useState(defaultRemainingTime);
 
     const updateRemainingTime = useCallback(
-        (countdown: number) => {
-            setRemainingTime(getRemainingTimeUntilMsTimestamp(countdown));
+        () => {
+            setRemainingTime(getRemainingTimeUntilMsTimestamp());
         }, []
     )
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            updateRemainingTime(countdownTimestampMs);
+            updateRemainingTime();
         }, 1000);
         return () => clearInterval(intervalId);
-    }, [countdownTimestampMs, updateRemainingTime]);
+    }, [updateRemainingTime]);
 
     return (
         <div className="countdown-timer">

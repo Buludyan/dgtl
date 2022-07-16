@@ -1,7 +1,0 @@
-make.exe --dry-run --always-make --keep-going --print-directory
-make: Entering directory 'c:/Users/arman/Desktop/num'
-docker build \
-	-t react-app-production:production \
-	-f Dockerfile.production .
-make: Leaving directory 'c:/Users/arman/Desktop/num'
- 

@@ -1,21 +1,33 @@
+import { FC, useState } from 'react';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
 import { IconButton } from '@mui/material';
 import ReplayCircleFilledRoundedIcon from '@mui/icons-material/ReplayCircleFilledRounded';
 import BarChartRoundedIcon from '@mui/icons-material/BarChartRounded';
 import CoffeeRoundedIcon from '@mui/icons-material/CoffeeRounded';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
-import React, { useState } from 'react';
-import './Header.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { gameState, restartGame, setAllData, setGameMod, setSecretNum, setStatsOpen } from '../store/slices/gameSlice';
+
+import { dailySecretNumGenerator, practiceSecretNumGenerator } from '../../helpers/secretNumGenerators';
+import {
+  gameState,
+  restartGame,
+  setAllData,
+  setGameMod,
+  setSecretNum,
+  setStatsOpen
+} from '../../slices/gameSlice';
+
 import { HelpMW } from '../modalWIndows/helpMW/HelpMW';
-import { NavLink } from 'react-router-dom';
-import { dailySecretNumGenerator, practiceSecretNumGenerator } from '../helpers/secretNumGenerators';
+
+import './Header.scss';
 
 type HeaderState = {
   gameMod: 'daily' | 'practice'
 }
 
-export const Header = () => {
+export const Header: FC = () => {
 
   const dispatch = useDispatch();
 

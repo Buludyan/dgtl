@@ -1,11 +1,16 @@
-import { Button } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { practiceSecretNumGenerator } from '../../helpers/secretNumGenerators';
+
+import { Button } from '@mui/material';
+
+import { practiceSecretNumGenerator } from '../../../helpers/secretNumGenerators';
+import { gameState, restartGame, setStatsOpen } from '../../../slices/gameSlice';
 import { Statistic } from '../../keyboard/Keyboard';
-import { gameState, restartGame, setStatsOpen } from '../../store/slices/gameSlice';
+
 import { Timer } from '../../timer/Timer';
-import './GameEndMW.scss'
+
+import './GameEndMW.scss';
 
 type GameEndMWState = {
     isGameEnd: null | 'win' | 'lose',
@@ -14,7 +19,7 @@ type GameEndMWState = {
     secretNum: number[]
 }
 
-export const GameEndMW: React.FC = () => {
+export const GameEndMW: FC = () => {
 
     const [isActive, setActive] = useState<{ status: boolean, result: string }>({
         status: false,
@@ -147,17 +152,9 @@ export const GameEndMW: React.FC = () => {
                             justifyContent: 'space-between'
                         }}>
                         <p>NEXT GAME: </p>
-                        <Timer countdownTimestampMs={1659986400000} />
+                        <Timer />
                     </div>
                 }
-                <div className='modalContent__link'>
-                    <a
-                        target="_blank"
-                        rel="noreferrer"
-                        className='modalContent__playIcon'
-                        href='https://play.google.com/store/apps/details?id=com.LevonHovhannisyan.dgtl'
-                    />
-                </div>
             </div>
         </div >
     )

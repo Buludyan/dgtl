@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
-import { gameState, setValue } from '../../store/slices/gameSlice';
+
+import { gameState, setValue } from '../../../slices/gameSlice';
+
 import './Key.scss';
 
 type KeyPrpos = {
@@ -12,7 +15,7 @@ type KeyState = {
   isGameEnd: null | 'win' | 'lose'
 }
 
-export const Key: React.FC<KeyPrpos> = ({ value }) => {
+export const Key: FC<KeyPrpos> = ({ value }) => {
 
   const { disabledValues, isGameEnd }: KeyState = useSelector(gameState);
 

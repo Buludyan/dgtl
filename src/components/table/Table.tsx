@@ -1,14 +1,18 @@
-import React from 'react';
+import { FC } from 'react';
+
 import { useSelector } from 'react-redux';
-import './Table.scss'
-import { gameState } from '../store/slices/gameSlice'
+
+import { gameState } from '../../slices/gameSlice';
+
 import { Row } from './row/Row';
+
+import './Table.scss';
 
 type TableState = {
   rowsCount: number[]
 }
 
-export const Table: React.FC = () => {
+export const Table: FC = () => {
 
   const { rowsCount }: TableState = useSelector(gameState)
 
