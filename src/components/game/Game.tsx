@@ -1,52 +1,36 @@
-import {FC} from 'react';
+import { FC } from 'react';
 
-import { useSelector } from 'react-redux';
-
-import { gameState } from '../../slices/gameSlice';
-
-import { Table } from '../table/Table';
-import { Keyboard } from '../keyboard/Keyboard';
+import { useAppSelector } from '../../hooks/storeSelector';
+import { Table } from '../Table/Table';
+import { Keyboard } from '../Keyboard/Keyboard';
 
 import './Game.scss';
 
-type GameState = {
-  isGameEnd: null | 'win' | 'lose',
-  secretNum: number[]
-};
-
 export const Game: FC = () => {
-
-  const { isGameEnd, secretNum }: GameState = useSelector(gameState);
+  const { isGameEnd, secretNum } = useAppSelector((state) => state.game);
 
   return (
-    <div className='game'>
+    <div className="game">
       <Table />
-      {
-        isGameEnd === 'lose'
-          ?
-          <div className='game__secretNum'>
-            {secretNum.map((num, idx) => {
-              return (
-                <div
-                  key={idx}
-                  className='game__ceil'
-                >
-                  {num}
-                </div>
-              )
-            })}
-          </div>
-          :
-          isGameEnd === 'win'
-          ?
-          <div 
-            style={{
-              height: '152px'
-            }}
-          />
-          :
-          <Keyboard />
-      }
+      {isGameEnd === 'lose' ? (
+        <div className="game__secretNum">
+          {secretNum.map((num, idx) => {
+            return (
+              <div key={idx} className="game__ceil">
+                {num}
+              </div>
+            );
+          })}
+        </div>
+      ) : isGameEnd === 'win' ? (
+        <div
+          style={{
+            height: '152px',
+          }}
+        />
+      ) : (
+        <Keyboard />
+      )}
     </div>
-  )
+  );
 };

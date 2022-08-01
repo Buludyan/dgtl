@@ -41,7 +41,7 @@
   z-index: 2;
 }
 
-.modalContent {
+.helpModalContent {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -56,87 +56,39 @@
       justify-content: space-around;
   border-radius: 15px;
   width: 450px;
-  min-height: 400px;
+  height: 400px;
   font-family: 'Lato', sans-serif;
   background-color: #121212;
   color: white;
   border: .1px solid #2e2d2d;
 }
 
-.modalContent__link {
+.helpModalContent__text {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: 139px;
-}
-
-.modalContent__resultText {
-  font-size: 25px;
-}
-
-@media screen and (min-width: 320px) and (max-width: 479px) {
-  .modalContent {
-    width: 360px;
-  }
-}
-
-.statistic {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.statistic__headline {
-  padding: 10px 0;
-  font-size: 20px;
-}
-
-.statistic__data {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.statistic__dataItem {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 86px;
+  width: 400px;
+  height: 350px;
   text-align: center;
 }
 
-.statistic__dataItem div {
-  font-size: 35px;
+@media screen and (min-width: 320px) and (max-width: 479px) {
+  .helpModalContent {
+    width: 350px;
+    height: 450px;
+  }
+  .helpModalContent__text {
+    width: 320px;
+    height: 400px;
+  }
 }
-/*# sourceMappingURL=GameEndMW.css.map */
+/*# sourceMappingURL=HelpMW.css.map */

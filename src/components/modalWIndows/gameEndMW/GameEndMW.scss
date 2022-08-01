@@ -41,6 +41,8 @@
     color: white;
     border: .1px solid #2e2d2d;
 
+
+
     &__link {
         display: flex;
         align-items: center;
@@ -53,6 +55,21 @@
     }
 }
 
+.secretNum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__title {
+        font-size: 25px;
+        margin-top: 5px;
+    }
+
+    &__value {
+        font-size: 50px;
+    }
+}
 
 @media screen and (min-width: 320px) and (max-width: 479px) {
     .modalContent {

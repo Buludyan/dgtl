@@ -1,39 +1,26 @@
 import { FC } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../../hooks/storeSelector';
 
-import { gameState } from '../../../slices/gameSlice';
-
-import { Ceil } from './ceil/Ceil';
+import { Ceil } from './Ceil/Ceil';
 
 import './Row.scss';
 
 type RowProps = {
-    row: number
-    key: number
-}
-
-type RowState = {
-    ceilsCount: number[]
-}
+  row: number;
+  key: number;
+};
 
 export const Row: FC<RowProps> = ({ row }) => {
+  const { ceilsCount } = useAppSelector((state) => state.game);
 
-    const { ceilsCount }: RowState = useSelector(gameState);
-
-    return (
-        <div className='row'>
-            <div className='row__inner'>
-                {ceilsCount.map((num: number) => {
-                    return (
-                        <Ceil 
-                            key={num}
-                            row={row}
-                            ceil={num}
-                        />
-                    )
-                })}
-            </div>
-        </div>
-    )
-}
+  return (
+    <div className="row">
+      <div className="row__inner">
+        {ceilsCount.map((num: number) => {
+          return <Ceil key={num} row={row} ceil={num} />;
+        })}
+      </div>
+    </div>
+  );
+};

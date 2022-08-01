@@ -5,14 +5,11 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { store } from '../src/store/Store';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
   </Provider>
-
 );

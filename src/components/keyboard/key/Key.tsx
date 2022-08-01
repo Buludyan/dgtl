@@ -1,64 +1,35 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import { gameState, setValue } from '../../../slices/gameSlice';
+import { useActions } from '../../../hooks/actions';
+import { useAppSelector } from '../../../hooks/storeSelector';
 
 import './Key.scss';
 
 type KeyPrpos = {
-  value: number
-}
-
-type KeyState = {
-  disabledValues: number[]
-  isGameEnd: null | 'win' | 'lose'
-}
+  value: number;
+};
 
 export const Key: FC<KeyPrpos> = ({ value }) => {
-
-  const { disabledValues, isGameEnd }: KeyState = useSelector(gameState);
-
-  const [isDisabled, setDisabled] = useState<boolean>(false);
-  const [btnSize, setBtnSize] = useState<string>('55px');
-
-  useEffect(() => {
-    if (disabledValues.find(num => num === value) !== undefined) {
-      setDisabled(true)
-    } else {
-      setDisabled(false)
-    }
-
-  }, [disabledValues, value]);
-
-  const dispatch = useDispatch();
+  const { disabledValues, isGameEnd } = useAppSelector((state) => state.game);
+  const { setValue } = useActions();
 
   const setValueHandler = (value: number) => {
-    dispatch(setValue(value))
-  }
+    setValue(value);
+  };
 
   return (
     <button
-      className='key'
+      className="key"
       onClick={() => setValueHandler(value)}
       disabled={isGameEnd ? true : false}
       style={{
-        visibility: isDisabled ? 'hidden' : 'visible',
+        visibility:
+          disabledValues.find((num) => num === value) !== undefined ? 'hidden' : 'visible',
       }}
-      onMouseDown={() => setBtnSize('50px')}
-      onMouseUp={() => setBtnSize('55px')}
-      onMouseLeave={() => setBtnSize('55px')}
     >
-      <div className='key__inner'
-        style={{
-          height: btnSize,
-          width: btnSize
-        }}
-      >
-        <div className='key__value'>
-          {value}
-        </div>
+      <div className="key__inner">
+        <div className="key__value">{value}</div>
       </div>
     </button>
-  )
-}
+  );
+};

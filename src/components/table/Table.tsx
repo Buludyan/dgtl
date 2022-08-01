@@ -1,35 +1,21 @@
 import { FC } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../hooks/storeSelector';
 
-import { gameState } from '../../slices/gameSlice';
-
-import { Row } from './row/Row';
+import { Row } from './Row/Row';
 
 import './Table.scss';
 
-type TableState = {
-  rowsCount: number[]
-}
-
 export const Table: FC = () => {
-
-  const { rowsCount }: TableState = useSelector(gameState)
+  const { rowsCount } = useAppSelector((state) => state.game);
 
   return (
-    <div className='table'>
-      <div className='table__inner'>
-        {
-          rowsCount.map((num: number) => {
-            return (
-              <Row
-                key={num}
-                row={num}
-              />
-            )
-          })
-        }
+    <div className="table">
+      <div className="table__inner">
+        {rowsCount.map((num: number) => {
+          return <Row key={num} row={num} />;
+        })}
       </div>
     </div>
-  )
-}
+  );
+};

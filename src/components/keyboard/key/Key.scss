@@ -20,6 +20,11 @@
         background-color: #818384;
     }
 
+    &__inner:active {
+        height: 50px;
+        width: 50px;
+    }
+
     &__value {
         color: #fff;
         font-size: 25px;
