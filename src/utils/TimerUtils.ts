@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import dayjs, { ConfigType, Dayjs } from 'dayjs';
 
 export function getRemainingTimeUntilMsTimestamp() {
   const timestampDayjs = dayjs(new Date().setHours(0, 0, 0, 0) + 86400000);
@@ -19,17 +19,17 @@ export function getRemainingTimeUntilMsTimestamp() {
   };
 }
 
-function getRemainingSeconds(nowDayjs: any, timestampDayjs: any) {
+function getRemainingSeconds(nowDayjs: ConfigType, timestampDayjs: Dayjs) {
   const seconds = timestampDayjs.diff(nowDayjs, 'seconds') % 60;
   return padWithZeros(seconds, 2);
 }
 
-function getRemainingMinutes(nowDayjs: any, timestampDayjs: any) {
+function getRemainingMinutes(nowDayjs: ConfigType, timestampDayjs: Dayjs) {
   const minutes = timestampDayjs.diff(nowDayjs, 'minutes') % 60;
   return padWithZeros(minutes, 2);
 }
 
-function getRemainingHours(nowDayjs: any, timestampDayjs: any) {
+function getRemainingHours(nowDayjs: ConfigType, timestampDayjs: Dayjs) {
   const hours = timestampDayjs.diff(nowDayjs, 'hours') % 24;
   return padWithZeros(hours, 2);
 }

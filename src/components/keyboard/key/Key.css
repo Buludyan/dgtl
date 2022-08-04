@@ -32,6 +32,11 @@
   background-color: #818384;
 }
 
+.key__inner:active {
+  height: 50px;
+  width: 50px;
+}
+
 .key__value {
   color: #fff;
   font-size: 25px;

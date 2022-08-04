@@ -3,10 +3,13 @@ import { FC, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 
-import icon from '../src/icon/icon.jpg';
+import icon from '../src/assets/icon.jpg';
 import { dailySecretNumGenerator, practiceSecretNumGenerator } from './helpers/secretNumGenerators';
 import { useAppSelector } from './hooks/storeSelector';
 import { useActions } from './hooks/actions';
+import { GameType, StatsType } from './types/types';
+import { getGameTemplate, getStatsTemplate } from './utils/templateCreators';
+import { ICurrData } from './interfaces/interfaces';
 
 import { Game } from './components/Game/Game';
 import { Header } from './components/Header/Header';
@@ -21,7 +24,8 @@ const App: FC = () => {
   const { setAllData, setSecretNum, setStatsOpen } = useActions();
 
   useEffect(() => {
-    const currData = JSON.parse(localStorage.getItem('currentData') || '{}');
+    const currData: ICurrData = JSON.parse(localStorage.getItem('currentData') || '{}');
+    const gameTemplate: GameType = getGameTemplate();
 
     let currentData = {};
 
@@ -35,17 +39,21 @@ const App: FC = () => {
           curRowData,
           isGameEnd,
         },
-        practice: {
-          ...currData.practice,
-        },
+        practice: currData.practice
+          ? {
+              ...currData.practice,
+            }
+          : { ...gameTemplate },
       };
     }
 
     if (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice`) {
       currentData = {
-        daily: {
-          ...currData.daily,
-        },
+        daily: currData.daily
+          ? {
+              ...currData.daily,
+            }
+          : { ...gameTemplate },
         practice: {
           secretNum,
           disabledValues,
@@ -63,16 +71,11 @@ const App: FC = () => {
   }, [curRowData, currentRow, disabledValues, isGameEnd, secretNum, tableData]);
 
   useEffect(() => {
-    const stats = JSON.parse(localStorage.getItem('statistic') || '{}');
-    const currentData = JSON.parse(localStorage.getItem('currentData') || '{}');
+    const stats: StatsType = JSON.parse(localStorage.getItem('statistic') || '{}');
+    const currentData: ICurrData = JSON.parse(localStorage.getItem('currentData') || '{}');
 
     if (!Object.entries(stats).length) {
-      const statsTemplate = {
-        allGames: 0,
-        win: 0,
-        curStreak: 0,
-        maxStreak: 0,
-      };
+      const statsTemplate: StatsType = getStatsTemplate();
 
       localStorage.setItem(
         'statistic',
@@ -83,15 +86,8 @@ const App: FC = () => {
       );
     }
 
-    if (!Object.entries(currentData).length) {
-      const gameTemplate = {
-        curRowData: [],
-        currentRow: 1,
-        disabledValues: [],
-        isGameEnd: null,
-        secretNum: [],
-        tableData: [],
-      };
+    if (!Object.entries(currentData).length || !currentData.practice || !currentData.daily) {
+      const gameTemplate: GameType = getGameTemplate();
 
       localStorage.setItem(
         'currentData',
@@ -111,7 +107,7 @@ const App: FC = () => {
   }, []);
 
   useEffect(() => {
-    const currentData = JSON.parse(localStorage.getItem('currentData') || '{}');
+    const currentData: ICurrData = JSON.parse(localStorage.getItem('currentData') || '{}');
 
     if (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice`) {
       setAllData(currentData.practice);
@@ -126,28 +122,20 @@ const App: FC = () => {
   }, []);
 
   useEffect(() => {
-    const currentData = JSON.parse(localStorage.getItem('currentData') || '{}');
+    const currentData: ICurrData = JSON.parse(localStorage.getItem('currentData') || '{}');
 
     if (window.location.href === `${process.env.REACT_APP_BASE_URL}/practice`) {
       if (!currentData.practice.secretNum.length) setSecretNum(practiceSecretNumGenerator());
     }
 
     if (window.location.href === `${process.env.REACT_APP_BASE_URL}/`) {
-      if (!currentData.practice.secretNum.length) setSecretNum(dailySecretNumGenerator());
+      if (!currentData.daily.secretNum.length) setSecretNum(dailySecretNumGenerator());
     }
-  }, [setSecretNum]);
+  }, []);
 
   useEffect(() => {
-    const currData = JSON.parse(localStorage.getItem('currentData') || '{}');
-
-    const pattern = {
-      curRowData: [],
-      currentRow: 1,
-      disabledValues: [],
-      isGameEnd: null,
-      secretNum: [],
-      tableData: [],
-    };
+    const currData: ICurrData = JSON.parse(localStorage.getItem('currentData') || '{}');
+    const pattern: GameType = getGameTemplate();
 
     const interval = setInterval(() => {
       const date = JSON.parse(localStorage.getItem('date') || '{}');

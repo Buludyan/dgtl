@@ -1,6 +1,5 @@
 import { FC, useState, useEffect, useCallback } from 'react';
-
-import { getRemainingTimeUntilMsTimestamp } from '../../utils/TimerUtils';
+import { getRemainingTimeUntilMsTimestamp } from '../../utils/timerUtils';
 
 import './Timer.scss';
 

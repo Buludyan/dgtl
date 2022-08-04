@@ -14,6 +14,9 @@ import {
   dailySecretNumGenerator,
   practiceSecretNumGenerator,
 } from '../../helpers/secretNumGenerators';
+import { ICurrData } from '../../interfaces/interfaces';
+import { getGameTemplate } from '../../utils/templateCreators';
+import { GameType } from '../../types/types';
 
 import { HelpMW } from '../ModalWIndows/HelpMW/HelpMW';
 
@@ -30,15 +33,41 @@ export const Header: FC = () => {
   };
 
   const onDailyClick = () => {
-    const currentData = JSON.parse(localStorage.getItem('currentData') || '{}');
-    setAllData(currentData.daily);
+    const currentData: ICurrData = JSON.parse(localStorage.getItem('currentData') || '{}');
+    const gameTemplate: GameType = getGameTemplate();
+
+    if (!Object.entries(currentData).length) {
+      localStorage.setItem(
+        'currentData',
+        JSON.stringify({
+          daily: { ...gameTemplate },
+          practice: { ...gameTemplate },
+        })
+      );
+    } else {
+      setAllData(currentData.daily);
+    }
+
     if (!currentData.daily.secretNum.length) setSecretNum(dailySecretNumGenerator());
     setGameMod('daily');
   };
 
   const onPracticeClick = () => {
-    const currentData = JSON.parse(localStorage.getItem('currentData') || '{}');
-    setAllData(currentData.practice);
+    const currentData: ICurrData = JSON.parse(localStorage.getItem('currentData') || '{}');
+    const gameTemplate: GameType = getGameTemplate();
+
+    if (!Object.entries(currentData).length) {
+      localStorage.setItem(
+        'currentData',
+        JSON.stringify({
+          daily: { ...gameTemplate },
+          practice: { ...gameTemplate },
+        })
+      );
+    } else {
+      setAllData(currentData.practice);
+    }
+
     if (!currentData.practice.secretNum.length) setSecretNum(practiceSecretNumGenerator());
     setGameMod('practice');
   };

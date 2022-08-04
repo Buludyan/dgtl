@@ -46,7 +46,7 @@ export const gameSlice = createSlice({
       state.secretNum = action.payload;
     },
     setDisabledValues: (state, action: PayloadAction<number[]>) => {
-      state.disabledValues = [...state.disabledValues, ...action.payload];
+      state.disabledValues = Array.from(new Set([...state.disabledValues, ...action.payload]));
     },
     setValue: (state, action: PayloadAction<number>) => {
       if (state.curRowData.length < state.ceilsCount.length) {
