@@ -44,6 +44,7 @@ export const Header: FC = () => {
           practice: { ...gameTemplate },
         })
       );
+      setAllData(gameTemplate);
     } else {
       setAllData(currentData.daily);
     }
@@ -64,6 +65,7 @@ export const Header: FC = () => {
           practice: { ...gameTemplate },
         })
       );
+      setAllData(gameTemplate);
     } else {
       setAllData(currentData.practice);
     }
